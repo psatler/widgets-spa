@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Widget Factory!</title>
+    <link rel="stylesheet" type="text/css" href="/components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/components/rdash-ui/dist/css/rdash.min.css">
+
+
+  </head>
+  <body>
+    <div id="page-wrapper" class="open">
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar">
+          <li class="sidebar-main"><a href="/">Dashboard <span class="menu-icon fa fa-tachometer"></span></a></li>
+          <li class="sidebar-title"><span>NAVIGATION</span></li>
+          <li class="sidebar-list"><a href="/">Dashboard <span class="menu-icon fa fa-tachometer"></span></a></li>
+          <li class="sidebar-list"><a href="/user.html">Users <span class="menu-icon fa fa-users"></span></a></li>
+          <li class="sidebar-list"><a href="/widget.html">Widgets <span class="menu-icon fa fa-cubes"></span></a></li>
+        </ul>
+        <div class="sidebar-footer col-xs-12"><a href="#" target="_blank">&copy; 2015 Red Ventures</a></div>
+      </div>
+
+      <!-- End Sidebar -->
+      <div id="content-wrapper">
+
+        <div class="page-content">
+
+          <!-- Header Bar -->
+          <div class="row header col-xs-12">
+            <div class="user pull-right">
+              <div class="item dropdown">
+                <a href="#" class="dropdown-toggle"><img src="/img/avatar.jpg" alt=""></a>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">Dashboard</div>
+              <div class="breadcrumb-links">Home / Dashboard</div>
+            </div>
+          </div>
+          <!-- End Header Bar -->
+
+
+          <!-- Create/Edit -->
+          <div class="row">
+
+            <!-- Widget listing -->
+            <div class="col-lg-12">
+              <div class="widget">
+                <div class="widget-header">Edit Template</div>
+                <div class="widget-body">
+                  <form class="form-horizontal" action="/widgets/{{.ID}}", method="POST">
+                  <!-- <form class="form-horizontal" action="/widgets/{{.ID}}?_method=PUT", method="POST"> -->
+                    <input type="hidden" name="_method" value="put" />
+                    <!-- <legend>Create Widget</legend> -->
+
+                    <!-- Name-->
+                    <div class="controls">
+                    Name
+                      <input id="widget-name" name="widget-name" type="text" placeholder="foo-bar" class="input-medium" value="{{.Name}}">
+                    </div>
+
+                    <!-- Price -->
+                    <div class="controls">
+                      <div class="input-prepend">
+                      Price
+                        <span class="add-on">$</span>
+                        <input id="widget-price" name="widget-price" class="input-medium" placeholder="0.00" type="text" value="{{.Price}}">
+                      </div>
+                    </div>
+
+                    <!-- Color -->
+                    <div class="controls">
+                    Color
+                      <select id="widget-color" name="widget-color" class="input-large">
+                        {{if eq .Color "red"}}
+                        <option selected="selected">red</option>
+                        {{else}}
+                        <option>red</option>
+                        {{end}}
+                        {{if eq .Color "purple"}}
+                        <option selected="selected">purple</option>
+                        {{else}}
+                        <option>purple</option>
+                        {{end}}
+                        {{if eq .Color "black"}}
+                        <option selected="selected">black</option>
+                        {{else}}
+                        <option>black</option>
+                        {{end}}
+                        {{if eq .Color "green"}}
+                        <option selected="selected">green</option>
+                        {{else}}
+                        <option>green</option>
+                        {{end}}
+                        {{if eq .Color "magenta"}}
+                        <option selected="selected">magenta</option>
+                        {{else}}
+                        <option>magenta</option>
+                        {{end}}
+                        {{if eq .Color "white"}}
+                        <option selected="selected">white</option>
+                        {{else}}
+                        <option>white</option>
+                        {{end}}
+                        {{if eq .Color "depends on the viewing angle"}}
+                        <option selected="selected">depends on the viewing angle</option>
+                        {{else}}
+                        <option>depends on the viewing angle</option>
+                        {{end}}
+                        <!-- <option value="purple">purple</option>
+                        <option value="black">black</option>
+                        <option value="green">green</option>
+                        <option value="magenta">magenta</option>
+                        <option value="white">white</option>
+                        <option value="depends on the viewing angle">depends on the viewing angle</option> -->
+                      </select>
+                    </div>
+
+                    <!-- Melts -->
+                    <div class="controls">
+                      Melts
+                      {{if eq .Melts "yes"}}
+                      <input type="checkbox" name="widget-properties" id="widget-properties-0" value="melts" checked="checked">
+                      {{else}}
+                      <input type="checkbox" name="widget-properties" id="widget-properties-0" value="melts">
+                      {{end}}
+                    </div>
+
+                    <!-- Inventory -->
+                    <div class="controls">
+                      Inventory
+                      <input id="widget-count" name="widget-count" type="text" placeholder="#?" class="input-small" value="{{.Inventory}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- <button>Test</button> -->
+                  </form>
+                </div><!-- End Widget body -->
+              </div><!-- End Widget -->
+            </div><!-- End Column -->
+          </div><!-- End Row -->
+
+
+    
+
+        </div><!-- End Page Content -->
+      </div><!-- End Content Wrapper -->
+    </div><!-- End Page Wrapper -->
+  </body>
+</html>
