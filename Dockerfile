@@ -3,11 +3,11 @@
 FROM golang
 
 # Create a directory inside the container to store all our application and then make it the working directory.
-RUN mkdir -p /go/src/widgets-spa-master-pablo
-WORKDIR /go/src/widgets-spa-master-pablo
+RUN mkdir -p /go/src/widgets-spa-master
+WORKDIR /go/src/widgets-spa-master
 
 # Copy the example-app directory (where the Dockerfile lives) into the container.
-COPY . /go/src/widgets-spa-master-pablo
+COPY . /go/src/widgets-spa-master
 
 # Download and install any required third party dependencies into the container.
 RUN go-wrapper download
