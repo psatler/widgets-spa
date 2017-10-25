@@ -1,0 +1,302 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "A simple API for the Widgets Single Page App Demo API available at [https://github.com/RedVentures/widgets-spa](https://github.com/RedVentures/widgets-spa)",
+    "version" : "1.0.0",
+    "title" : "Widgets Single Page App Demo API"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/pablos/WidgetsAPIRedVentures/1.0.0",
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/" : {
+      "get" : {
+        "summary" : "Displays a list of widgets and users at the landing page",
+        "description" : "Returns a list of users and widgets as well as the total number of each stored in database",
+        "operationId" : "indexHandler",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Succesfully returned list of users and widgets",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inline_response_200"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      }
+    },
+    "/users" : {
+      "get" : {
+        "summary" : "Displays a list of users",
+        "description" : "Returns a list of users",
+        "operationId" : "getUsers",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully returned a list of users",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inline_response_200"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "summary" : "Displays a single user",
+        "description" : "Returns a user based on a single ID",
+        "operationId" : "getUser",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of user to fetch",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully returned a user",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      }
+    },
+    "/widgets" : {
+      "get" : {
+        "summary" : "Displays a list of widgets",
+        "description" : "Returns a list of widgets",
+        "operationId" : "getWidgets",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully returned a list of widgets",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inline_response_200_1"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Creates new widget",
+        "description" : "Creates new widget from a form and adds it to the database, refreshing the page afterwards. An id is automatically assigned to the new widget",
+        "operationId" : "createWidget",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "widget",
+          "description" : "creates a new widget in our database",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/widget"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully created a new widget. The new widget is added to the database and is sent a get request, refreshing the page and showing the newly added widget in the table"
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      }
+    },
+    "/widgets/{id}" : {
+      "get" : {
+        "summary" : "Displays a single widget",
+        "description" : "Returns a widget based on a single ID",
+        "operationId" : "getWidget",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of widget to fetch",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully returned a widget",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_1"
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates an existing widget from form",
+        "description" : "Updates an existing widget in the database with form data, acting like a PUT method, and then redirects the server to the widgets page with a GET request.",
+        "operationId" : "updateWidget",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of widget to be updated",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully updated a widget",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_1"
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          },
+          "404" : {
+            "description" : "Widget not found"
+          }
+        }
+      }
+    },
+    "/widgets/{id}/edit" : {
+      "get" : {
+        "summary" : "Form used for updating a single widget",
+        "description" : "Displays a form with widget information already filled in the form fields. The user has the option the modify the info. When he/she hits the submit button, the referred widget (based on id number) is updated.",
+        "operationId" : "editWiget",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "ID of pet to update",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully updated a widget",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_1"
+            }
+          },
+          "400" : {
+            "description" : "Invalid request",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_400"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "widget" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "color" : {
+          "type" : "string"
+        },
+        "price" : {
+          "type" : "string"
+        },
+        "melts" : {
+          "type" : "string"
+        },
+        "inventory" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "inline_response_200_1" : {
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "color" : {
+          "type" : "string"
+        },
+        "price" : {
+          "type" : "string"
+        },
+        "melts" : {
+          "type" : "string"
+        },
+        "inventory" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "inline_response_200" : {
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "inline_response_400" : {
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
