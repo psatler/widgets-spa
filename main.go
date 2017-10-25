@@ -478,6 +478,6 @@ func main() {
 	router.HandleFunc("/widgets/{id}/edit", editWidget).Methods("GET")
 
 	//http.ListenAndServe(":8000", nil)
-	log.Println("Server running on :5000")
-	log.Fatal(http.ListenAndServe(":5000", router))
+	log.Println("Server running on :8000")
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
